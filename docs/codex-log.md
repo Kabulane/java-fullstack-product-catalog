@@ -82,3 +82,14 @@ Prompt summary: allow the Vite development server to call Spring Boot API endpoi
 Decisions:
 - Spring MVC allows only `GET` requests from `http://localhost:5173` to `/api/**`.
 - The configuration is intentionally limited to local frontend development and does not add security infrastructure.
+
+## 2026-06-10 - Vue catalog
+
+Prompt summary: connect the Vue catalogue and product-detail views to the catalog API.
+
+Decisions:
+- Catalog API calls are isolated in `catalogApi.js`, with route references URL-encoded.
+- The full catalog loads once and uses client-side PrimeVue table pagination.
+- Product detail and reviews load concurrently for the selected route reference.
+- Named Vue Router navigation links connect catalog rows, product details, and the catalog return action.
+- Both views maintain explicit loading and error states.
