@@ -31,3 +31,15 @@ Decisions:
 - Authors are persisted before products; product cascading then persists attached reviews in one transaction.
 - The importer uses Spring Boot 4's managed Jackson 3 `ObjectMapper`.
 - The import path defaults to `../data/products.json` when the backend is the working directory.
+
+## 2026-06-10 - Catalog REST API
+
+Prompt summary: expose product summaries, product details, and product reviews through DTO-based REST endpoints.
+
+Decisions:
+- Dedicated DTO records prevent JPA entities from being exposed by controllers.
+- Product review counts and average ratings are calculated by aggregate repository projections.
+- Review authors are loaded with a query-level fetch join while entity associations remain lazy.
+- Average ratings are rounded to two decimal places; products without reviews return `0.00`.
+- Unknown product references return HTTP 404 through a dedicated exception.
+- Standalone MockMvc tests cover endpoint JSON and error behavior, while unit tests cover all `CatalogService` mapping and not-found branches.
