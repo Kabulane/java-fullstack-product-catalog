@@ -1,9 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import CatalogView from '../views/CatalogView.vue'
-import DashboardView from '../views/DashboardView.vue'
-import ProductDetailView from '../views/ProductDetailView.vue'
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -14,17 +10,17 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: DashboardView,
+      component: () => import('../views/DashboardView.vue'),
     },
     {
       path: '/catalog',
       name: 'catalog',
-      component: CatalogView,
+      component: () => import('../views/CatalogView.vue'),
     },
     {
       path: '/catalog/:reference',
       name: 'product-detail',
-      component: ProductDetailView,
+      component: () => import('../views/ProductDetailView.vue'),
       props: true,
     },
   ],
