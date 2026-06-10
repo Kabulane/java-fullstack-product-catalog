@@ -43,3 +43,14 @@ Decisions:
 - Average ratings are rounded to two decimal places; products without reviews return `0.00`.
 - Unknown product references return HTTP 404 through a dedicated exception.
 - Standalone MockMvc tests cover endpoint JSON and error behavior, while unit tests cover all `CatalogService` mapping and not-found branches.
+
+## 2026-06-10 - Dashboard REST API
+
+Prompt summary: add dedicated dashboard endpoints for KPI totals and ranked product aggregates.
+
+Decisions:
+- Dashboard aggregates use dedicated DTOs and repository projections instead of expanding catalog responses.
+- Positive reviews are ratings strictly greater than 3.
+- Ranked queries aggregate in the database and are limited to five results with deterministic tie-breakers.
+- Lowest-rated products must have reviews and an average rating strictly below 3.
+- Positive review counts are returned only for the most-appreciated response; the field is `null` for lowest-rated products.
