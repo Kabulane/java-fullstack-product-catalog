@@ -20,3 +20,14 @@ Decisions:
 - Reviews belong to products with cascade deletion; author deletion remains restrictive.
 - Author types use string enum persistence and database validation.
 - Hibernate validates the Flyway-managed schema instead of creating or updating it.
+
+## 2026-06-10 - JSON catalog import
+
+Prompt summary: add Spring Data repositories and import `data/products.json` at application startup.
+
+Decisions:
+- Import runs only when the products table is empty, making repeated application starts idempotent.
+- Each imported review creates its own author because the source data provides no stable author identifier.
+- Authors are persisted before products; product cascading then persists attached reviews in one transaction.
+- The importer uses Spring Boot 4's managed Jackson 3 `ObjectMapper`.
+- The import path defaults to `../data/products.json` when the backend is the working directory.
