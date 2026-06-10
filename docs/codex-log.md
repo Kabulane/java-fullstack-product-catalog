@@ -54,3 +54,13 @@ Decisions:
 - Ranked queries aggregate in the database and are limited to five results with deterministic tie-breakers.
 - Lowest-rated products must have reviews and an average rating strictly below 3.
 - Positive review counts are returned only for the most-appreciated response; the field is `null` for lowest-rated products.
+
+## 2026-06-10 - Vue frontend skeleton
+
+Prompt summary: initialize the Vue 3 bonus dashboard frontend with Vite, routing, PrimeVue, and Axios.
+
+Decisions:
+- PrimeVue 4 with the Aura preset provides the initial component styling.
+- `/` redirects to `/dashboard`; catalog and product-detail views have dedicated routes.
+- A shared Axios client targets `http://localhost:8080/api`.
+- Views remain placeholders until frontend API integration is implemented.
