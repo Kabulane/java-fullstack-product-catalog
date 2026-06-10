@@ -64,3 +64,21 @@ Decisions:
 - `/` redirects to `/dashboard`; catalog and product-detail views have dedicated routes.
 - A shared Axios client targets `http://localhost:8080/api`.
 - Views remain placeholders until frontend API integration is implemented.
+
+## 2026-06-10 - Vue dashboard
+
+Prompt summary: connect the Vue dashboard view to the backend dashboard endpoints.
+
+Decisions:
+- Dashboard API calls are isolated in `dashboardApi.js`.
+- Summary and ranking requests load concurrently on component mount.
+- The view keeps explicit loading, error, and data state.
+- PrimeVue cards, tables, tags, messages, and spinner provide a responsive dashboard without custom visual complexity.
+
+## 2026-06-10 - Local frontend CORS
+
+Prompt summary: allow the Vite development server to call Spring Boot API endpoints.
+
+Decisions:
+- Spring MVC allows only `GET` requests from `http://localhost:5173` to `/api/**`.
+- The configuration is intentionally limited to local frontend development and does not add security infrastructure.

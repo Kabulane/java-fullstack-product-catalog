@@ -37,7 +37,7 @@ public class Product {
     @Column(nullable = false)
     private Integer stock;
 
-    @Column(nullable = false, length = 3, columnDefinition = "CHAR(3)")
+    @Column(nullable = false, length = 3)
     private String currency;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)

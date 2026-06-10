@@ -5,7 +5,7 @@ CREATE TABLE products (
     description TEXT NOT NULL,
     price NUMERIC(12, 2) NOT NULL,
     stock INTEGER NOT NULL,
-    currency CHAR(3) NOT NULL,
+    currency VARCHAR(3) NOT NULL,
     CONSTRAINT uk_products_reference UNIQUE (reference),
     CONSTRAINT ck_products_price_non_negative CHECK (price >= 0),
     CONSTRAINT ck_products_stock_non_negative CHECK (stock >= 0)
